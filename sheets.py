@@ -4,7 +4,6 @@ import base64
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-
 def get_sheet():
     scope = [
         'https://spreadsheets.google.com/feeds',
@@ -22,3 +21,7 @@ def get_sheet():
     sheet_name = os.getenv('GOOGLE_SHEET_NAME')
     sheet = client.open(sheet_name).sheet1
     return sheet
+
+def append_data(name, age, phone):
+    sheet = get_sheet()
+    sheet.append_row([name, age, phone])
